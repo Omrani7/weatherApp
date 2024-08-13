@@ -1,0 +1,6 @@
+<div *ngIf="weatherData && weatherData.hourly">
+  <h2>Weather Details for your place</h2>
+  <p>First Recorded Temperature: {{ weatherData.hourly.temperature_2m[0] }}°C</p>
+  <p *ngIf="weatherData.hourly.time[0]">First Time Recorded: {{ weatherData.hourly.time[0] | date:'short' }}</p>
+  <p *ngIf="!weatherData.hourly.time[0]">Time data is not available.</p>
+</div>
