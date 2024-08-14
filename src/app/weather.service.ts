@@ -21,12 +21,12 @@ export class WeatherService {
     const apiUrl = 'https://api.open-meteo.com/v1/forecast';
 
     try {
-      // Convert the Observable to a Promise
+
       const response = await firstValueFrom(this.http.get<WeatherData>(apiUrl, { params }));
       return response;
     } catch (error) {
       console.error('Error fetching weather data:', error);
-      throw error; // Rethrow or handle the error as needed
+      throw error;
     }
   }
 }
