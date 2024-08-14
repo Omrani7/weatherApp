@@ -1,6 +1,17 @@
-<div *ngIf="weatherData && weatherData.hourly">
+<form [formGroup]="credentials">
+  <label for="latitude">Latitude</label>
+  <input type="number" id="latitude" name="latitude" formControlName="latitude"> <br>
+  <label for="longitude">Longitude</label>
+  <input type="number" name="longitude" id="longitude" formControlName="longitude">
+  <button type="button" (click)="getWeatherDetails()">Get Weather</button>
+</form>
+
+<div *ngIf="weatherData && weatherData.hourly" class="weather-details">
   <h2>Weather Details for your place</h2>
   <p>First Recorded Temperature: {{ weatherData.hourly.temperature_2m[0] }}°C</p>
   <p *ngIf="weatherData.hourly.time[0]">First Time Recorded: {{ weatherData.hourly.time[0] | date:'short' }}</p>
   <p *ngIf="!weatherData.hourly.time[0]">Time data is not available.</p>
+  <p *ngIf="weatherData.hourly.wind_speed_10m[0]">The wind speed is: {{ weatherData.hourly.wind_speed_10m[0] }} k/h</p>
+  <p *ngIf="weatherData.hourly.rain[0]">The rain state is: {{ weatherData.hourly.rain[0] }}</p>
+  <p *ngIf="weatherData.daily.sunrise[0]">The sun rises at: {{ weatherData.daily.sunrise[0] | date:'short' }}</p>
 </div>
