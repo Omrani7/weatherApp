@@ -5,7 +5,13 @@
   <input type="number" name="longitude" id="longitude" formControlName="longitude">
   <button type="button" (click)="getWeatherDetails()">Get Weather</button>
 </form>
-
+<label>Do you know your exact coordinates?</label>
+<div>
+  <input type="radio" id="yes" name="knowsCredentials" [(ngModel)]="knowsCrendientals" [value]="true">
+  <label for="yes">Yes</label>
+  <input type="radio" id="no" name="knowsCredentials" [(ngModel)]="knowsCrendientals" [value]="false">
+  <label for="no">No</label>
+</div>
 <div *ngIf="weatherData && weatherData.hourly" class="weather-details">
   <h2>Weather Details for your place</h2>
   <p>First Recorded Temperature: {{ weatherData.hourly.temperature_2m[0] }}°C</p>
@@ -14,4 +20,8 @@
   <p *ngIf="weatherData.hourly.wind_speed_10m[0]">The wind speed is: {{ weatherData.hourly.wind_speed_10m[0] }} k/h</p>
   <p *ngIf="weatherData.hourly.rain[0]">The rain state is: {{ weatherData.hourly.rain[0] }}</p>
   <p *ngIf="weatherData.daily.sunrise[0]">The sun rises at: {{ weatherData.daily.sunrise[0] | date:'short' }}</p>
+</div>
+<div *ngIf="!knowsCrendientals">
+  <h3>Having trouble determining your exact coordinates?</h3>
+  <a href="https://www.coordonnees-gps.fr/" target="_blank">Click here to get your latitude and longitude</a>
 </div>

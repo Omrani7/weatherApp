@@ -50,6 +50,8 @@ const longitude = Number(this.credentials.value.longitude!);
       console.error('Error fetching weather data:', error);
     });
 }
+credentialsInput: string = '';
+knowsCrendientals:boolean = true;
 
 
 }
